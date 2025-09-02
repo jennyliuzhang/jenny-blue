@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>Jenny Liu Zhang Explores the World</title>
+<link rel="icon" type="image/png" href="favicon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://use.typekit.net/ikv0scv.css">
+
+<script type="text/javascript">
+// <![CDATA[
+var colour="#2544A8"; // fixed sparkle color
+var sparkles=50;
+
+var x=ox=400;
+var y=oy=300;
+var swide=800;
+var shigh=600;
+var sleft=sdown=0;
+var tiny=new Array();
+var star=new Array();
+var starv=new Array();
+var starx=new Array();
+var stary=new Array();
+var tinyx=new Array();
+var tinyy=new Array();
+var tinyv=new Array();
+
+window.onload=function() { if (document.getElementById) {
+  var i, rats, rlef, rdow;
+  for (var i=0; i<sparkles; i++) {
+    // bigger tiny sparkles
+    rats=createDiv(6, 6);
+    rats.style.visibility="hidden";
+    rats.style.zIndex="999";
+    document.body.appendChild(tiny[i]=rats);
+    starv[i]=0;
+    tinyv[i]=0;
+
+    // bigger star container
+    rats=createDiv(10, 10);
+    rats.style.backgroundColor="transparent";
+    rats.style.visibility="hidden";
+    rats.style.zIndex="999";
+
+    // randomly choose arm thickness: 1px (thin) or 2px (thick)
+    var thickness = (Math.random() < 0.7) ? 1 : 2; // 70% thin
+
+    // cross arms sized to container 10x10, centered by offset
+    rlef=createDiv(thickness, 8);   // horizontal arm
+    rdow=createDiv(8, thickness);   // vertical arm
+    rats.appendChild(rlef);
+    rats.appendChild(rdow);
+
+    var offset = Math.floor((8 - thickness) / 2);
+    rlef.style.top  = offset + "px";
+    rlef.style.left = "0px";
+    rdow.style.top  = "0px";
+    rdow.style.left = offset + "px";
+
+    document.body.appendChild(star[i]=rats);
+  }
+  set_width();
+  sparkle();
+}}
+
+function sparkle() {
+  var c;
+  if (Math.abs(x-ox)>1 || Math.abs(y-oy)>1) {
+    ox=x;
+    oy=y;
+    for (c=0; c<sparkles; c++) if (!starv[c]) {
+      star[c].style.left=(starx[c]=x)+"px";
+      star[c].style.top=(stary[c]=y+1)+"px";
+      star[c].style.clip="rect(0px, 8px, 8px, 0px)";
+      // solid fixed color
+      star[c].childNodes[0].style.backgroundColor = star[c].childNodes[1].style.backgroundColor = colour;
+      star[c].style.visibility="visible";
+      starv[c]=50;
+      break;
+    }
+  }
+  for (c=0; c<sparkles; c++) {
+    if (starv[c]) update_star(c);
+    if (tinyv[c]) update_tiny(c);
+  }
+  setTimeout("sparkle()", 40);
+}
+
+function update_star(i) {
+  if (--starv[i]==25) star[i].style.clip="rect(2px, 6px, 6px, 2px)";
+  if (starv[i]) {
+    stary[i]+=1+Math.random()*3;
+    starx[i]+=(i%5-2)/5;
+    if (stary[i]<shigh+sdown) {
+      star[i].style.top=stary[i]+"px";
+      star[i].style.left=starx[i]+"px";
+    }
+    else {
+      star[i].style.visibility="hidden";
+      starv[i]=0;
+      return;
+    }
+  }
+  else {
+    tinyv[i]=50;
+    tiny[i].style.top=(tinyy[i]=stary[i])+"px";
+    tiny[i].style.left=(tinyx[i]=starx[i])+"px";
+    tiny[i].style.width="3px";  // fades smaller
+    tiny[i].style.height="3px";
+    tiny[i].style.backgroundColor=star[i].childNodes[0].style.backgroundColor;
+    star[i].style.visibility="hidden";
+    tiny[i].style.visibility="visible";
+  }
+}
+
+function update_tiny(i) {
+  if (--tinyv[i]==25) {
+    tiny[i].style.width="2px";
+    tiny[i].style.height="2px";
+  }
+  if (tinyv[i]) {
+    tinyy[i]+=1+Math.random()*3;
+    tinyx[i]+=(i%5-2)/5;
+    if (tinyy[i]<shigh+sdown) {
+      tiny[i].style.top=tinyy[i]+"px";
+      tiny[i].style.left=tinyx[i]+"px";
+    }
+    else {
+      tiny[i].style.visibility="hidden";
+      tinyv[i]=0;
+      return;
+    }
+  }
+  else tiny[i].style.visibility="hidden";
+}
+
+document.onmousemove=mouse;
+function mouse(e) {
+  if (e) {
+    y=e.pageY;
+    x=e.pageX;
+  }
+  else {
+    set_scroll();
+    y=event.y+sdown;
+    x=event.x+sleft;
+  }
+}
+
+window.onscroll=set_scroll;
+function set_scroll() {
+  if (typeof(self.pageYOffset)=='number') {
+    sdown=self.pageYOffset;
+    sleft=self.pageXOffset;
+  }
+  else if (document.body && (document.body.scrollTop || document.body.scrollLeft)) {
+    sdown=document.body.scrollTop;
+    sleft=document.body.scrollLeft;
+  }
+  else if (document.documentElement && (document.documentElement.scrollTop || document.documentElement.scrollLeft)) {
+    sleft=document.documentElement.scrollLeft;
+    sdown=document.documentElement.scrollTop;
+  }
+  else {
+    sdown=0;
+    sleft=0;
+  }
+}
+
+window.onresize=set_width;
+function set_width() {
+  var sw_min=999999;
+  var sh_min=999999;
+  if (document.documentElement && document.documentElement.clientWidth) {
+    if (document.documentElement.clientWidth>0) sw_min=document.documentElement.clientWidth;
+    if (document.documentElement.clientHeight>0) sh_min=document.documentElement.clientHeight;
+  }
+  if (typeof(self.innerWidth)=='number' && self.innerWidth) {
+    if (self.innerWidth>0 && self.innerWidth<sw_min) sw_min=self.innerWidth;
+    if (self.innerHeight>0 && self.innerHeight<sh_min) sh_min=self.innerHeight;
+  }
+  if (document.body.clientWidth) {
+    if (document.body.clientWidth>0 && document.body.clientWidth<sw_min) sw_min=document.body.clientWidth;
+    if (document.body.clientHeight>0 && document.body.clientHeight<sh_min) sh_min=document.body.clientHeight;
+  }
+  if (sw_min==999999 || sh_min==999999) {
+    sw_min=800;
+    sh_min=600;
+  }
+  swide=sw_min;
+  shigh=sh_min;
+}
+
+function createDiv(height, width) {
+  var div=document.createElement("div");
+  div.style.position="absolute";
+  div.style.height=height+"px";
+  div.style.width=width+"px";
+  div.style.overflow="hidden";
+  return (div);
+}
+// ]]>
+
+</script>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-rendering: optimizeLegibility;
+    }
+
+    ::selection {
+        background: #2544A8;
+        color: #fff;
+    }
+
+    @font-face {
+        font-family: "FK Raster Grotesk Smooth";
+        src: url('FKRasterGrotesk-Smooth.woff') format("woff");
+    }
+
+    body {
+        font-family: "Times New Roman", serif;
+        color: #2544A8;
+        overflow-x: hidden;
+    }
+        
+    .wrap {
+        margin: 20px auto 10px;
+        padding: 20px 16px;
+        overflow-x: hidden;
+    }
+
+    .little-jenny {
+        display: block;
+        margin: auto;
+        height: 160px;
+    }
+
+    a {
+        color: #2544A8;
+        text-decoration: underline;
+        text-underline-offset: 3px;
+        text-decoration-thickness: 1.5px;
+        transition: 100ms;
+    }
+
+        a:hover {
+            text-underline-offset: 4px;
+            text-decoration-thickness: 2px;
+        }
+
+    hr {
+        margin: 32px auto;
+        background: #2544A8;
+        border: none;
+        height: 1px;
+    }
+
+    h1 {
+        margin: 32px auto;
+        font: 400 1.8em/1.4em "FK Raster Grotesk Smooth", sans-serif;
+        letter-spacing: -0.05em;
+        text-align: center;
+    }
+
+    h2 {
+        margin: 60px 0 20px;
+        font: 300 1.75em/1.25em "quimby-gubernatorial", sans-serif;
+        text-align: center;
+    }
+
+    h3 {
+        display: block;
+        margin: 8px 0;
+        font: 600 0.9em/1.4em "FK Raster Grotesk Smooth", sans-serif;
+        text-transform: uppercase;
+    }
+
+    p {
+        line-height: 1.4em;
+    }
+
+    .updates {
+        margin: 40px -100px 0;
+        padding: 30px 95px 30px;
+        text-align: center;
+        border: 2px #2544A8 solid;
+        border-radius: 100%;
+    }
+
+        .updates p {
+            margin: 20px auto;
+        }
+
+        .updates h2 {
+            margin: 16px 0 20px;
+        }
+
+        .updates p:last-child {
+            width: 75%;
+        }
+
+    .cv-wrap {
+        margin: 60px auto 20px;
+    }
+
+    .entry {
+        margin: 32px 0;
+    }
+
+    .title {
+        display: block;
+        margin: 8px 0;
+        font: 400 1.1em/1.4em "FK Raster Grotesk Smooth", sans-serif;
+    }
+
+        .title .author {
+            font-weight: 600;
+        }
+
+        .title .talk-title {
+            font-style: italic;
+        }
+
+    .place {
+        display: block;
+        margin: 4px 0;
+        font-size: 1.1em;
+    }
+
+    .dates {
+        display: block;
+        margin: 8px 0;
+        font-size: 1.1em;
+    }
+
+    ul.bullets {
+        padding: 0 0 0 20px;
+    }
+
+    .bullets li {
+        margin: 8px 0;
+        line-height: 1.25em;
+    }
+
+    @media (min-width: 480px) {
+
+        .wrap {
+            margin: 50px auto 20px;
+            max-width: 800px;
+            overflow-x: visible;
+        }
+
+        ul.nav {
+        position: fixed;
+        top: 4px;
+        right: 20px;
+        font: normal 0.92em/1em "Arial", sans-serif;
+        letter-spacing: 0.0025em;
+        text-transform: uppercase;
+        list-style-type: none;
+        text-align: right;
+    }
+
+        ul.nav li {
+            margin: 16px 0;
+        }
+
+        ul.nav a {
+            text-decoration: none;
+            border: 1px solid rgba(37,68,168,0.5);
+            padding: 3px 6px;
+            border-radius: 4px;
+            background-position: right -20px center;
+        }
+
+            ul.nav a:hover {
+                background: url('favicon.png') no-repeat;
+                background-size: auto 70%;
+                background-position: right 4px center;
+                border: 1px solid #2544A8;
+                padding: 3px 24px 3px 6px;
+            }
+
+        h1 {
+            font: 400 3em/1.25em "FK Raster Grotesk Smooth", sans-serif;
+            max-width: 600px;
+        }
+
+        h2 {
+            margin: 80px 0 20px;
+            font: 300 2em/1.25em "quimby-gubernatorial", sans-serif;
+        }
+
+        .updates {
+            margin: 60px 0 0;
+            padding: 30px 60px 36px;
+            text-align: center;
+            border: 2px #2544A8 solid;
+            border-radius: 100%;
+        }
+
+            .updates p:last-child {
+                width: 80%;
+            }
+
+        .cv-wrap {
+            margin: 80px auto 40px;
+            max-width: 650px;
+        }
+
+        .entry {
+            margin: 40px 0;
+        }
+
+        .title {
+            font: 400 1.15em/1.4em "FK Raster Grotesk Smooth", sans-serif;
+        }
+
+    }
+
+</style>
+
+</head>
+
+<body>
+
+    <div class="wrap">
+        <img class="little-jenny" src="jenny.gif" alt="">
+
+        <h1>Jenny Liu Zhang is an American digital designer :)</h1>
+
+        <!-- <ul class="nav">
+            <li><a href="#">Index</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Showcase</a></li>
+            <li><a href="#">Vault</a></li>
+            <li><a href="#">Writing</a></li>
+            <li><a href="#">Journal</a></li>
+            <li><a href="#">Bookshelf</a></li>
+            <li><a href="#">Wardrobe</a></li>
+            <li><a href="#">Miscellany</a></li>
+            <li><a href="#">Guestbook</a></li>
+            <li><a href="#">Boutique</a></li>
+        </ul> -->
+
+        <div class="updates">
+            <h2>Updates</h2>
+            <h3>September 2025</h3>
+            <p>Just handed in my Masters thesis for the <a href="https://postgraduate.degrees.ed.ac.uk/index.php?r=site/view&edition=2025&id=1065" target="_blank">Narrative Futures program</a> at the University of Edinburgh, which I had been doing part-time since 2022. I wrote about critical theorist Ivan Illich&rsquo;s 1973 concept of conviviality and how modern computing is deteriorating it. Now recovering lost sleep. :)</p>
+            
+            <p>I work remotely full-time as a Staff Product Designer at <a href="https://www.monarchmoney.com/" target="_blank">Monarch</a>. Personal financial literacy is a really interesting problem space; the startup is growing rapidly and I&rsquo;m constantly being challenged.</p>
+            
+            <p>I&rsquo;m also developing the &ldquo;<a href="https://metagov.substack.com/p/announcing-the-metagov-governable" target="_blank">Small Hassles Court,</a>&rdquo; a playful browser-based game for conflict resolution, supported by Metagov&rsquo;s <a href="https://metagov.org/projects/governable-spacemakers-fellowship" target="_blank">Governable Spacemakers</a> fellowship and grant. This is a subproject of <a href="https://plottwisters.org/" target="_blank">Plot Twisters</a>, my game design collective.</p>
+            
+            <p>Finally, I&rsquo;m enjoying the seasons in Ohio, USA with my dog Lila and cat Cali. In addition to developing the rest of this website, I&rsquo;m cleaning out my closet, decorating my loft, playing soccer, and cooking more.</p>
+        </div>
+
+        <div class="cv-wrap">
+
+            <h2 id="education">Education</h2>
+
+            <!-- <div class="entry">
+            <span class="title">PhD in History, Anthropology, and Science, Technology, and Society</span>
+            <span class="place">Massachusetts Institute of Technology, School of Humanities, Arts, and Social Sciences</span>
+            <span class="dates">2027–2032</span>
+            <ul class="bullets">
+                <li>Dissertation: “Alternative Imaginaries of Digital Computing”</li>
+            </ul>
+            </div> -->
+
+            <div class="entry">
+            <span class="title">MSc in Narrative Futures: Art, Data, Society</span>
+            <span class="place">University of Edinburgh, Edinburgh Futures Institute</span>
+            <span class="dates">2022–2025</span>
+            <ul class="bullets">
+                <li>Thesis: “Fire &amp; Ghosts: Substrates of Conviviality from the Hearth to the Digital Product”</li>
+                <li>Degree award pending</li>
+            </ul>
+            </div>
+
+            <div class="entry">
+            <span class="title">BSc in Arts, Technology and the Business of Innovation</span>
+            <span class="place">University of Southern California, Iovine and Young Academy</span>
+            <span class="dates">2015–2019</span>
+            <ul class="bullets">
+                <li>One of 22 students selected for the 2nd cohort of the Iovine and Young Academy for integrated studies in art, technology and entrepreneurship.</li>
+                <li>Trustee Scholar (full-tuition merit scholarship)</li>
+                <li>Capstone: “Plot Twisters: Personal storytelling interfaces for students in the 21st century”</li>
+                <li>Personalized concentrations in Interface Design and Narrative Research Methods</li>
+                <li>Minor in Narrative Structure, Department of English</li>
+                <li>3.8 GPA, magna cum laude</li>
+            </ul>
+            </div>
+
+            <h2 id="professional">Professional Experience</h2>
+
+            <div class="entry">
+                <span class="title">Founder, Managing Director</span>
+                <span class="place">Plot Twisters</span>
+                <span class="dates">2019–present, grant funded by IDEO and Riot Games as of 2023</span>
+                <ul class="bullets">
+                    <li>Leading a design organization of 8 artists, researchers, designers, and technologists to create an online game world for nurturing personal narrative building in youth.</li>
+                    <li>Winner of $50,000 top grant prize for OpenIDEO Designing for Digital Thriving.</li>
+                    <li>Spearheaded presentations and exhibitions at 4 conferences hosted by the Oxford Internet Institute, Cambridge Digital Humanities, and the Diverse Intelligences Summer Institute at St. Andrews.</li>
+                    <li>Established 8 multi-year partnerships with educators, civic nonprofits, and psychology labs.</li>
+                    <li>Facilitating small teams to conduct mixed-methods research and design, based on a literature review of 34 key works across the humanities and developmental sciences.</li>
+                    <li>Collaboratively designing, illustrating, and engineering all gameplay prototypes and websites.</li>
+                </ul>
+            </div>
+
+            <div class="entry">
+            <span class="title">Staff Designer</span>
+            <span class="place">Monarch Money</span>
+            <span class="dates">2025–2027</span>
+            <ul class="bullets">
+                <li>Joined as the 4th product design hire of this financial technology startup.</li>
+            </ul>
+            </div>
+
+            <div class="entry">
+            <span class="title">Founding Designer</span>
+            <span class="place">Dorsia</span>
+            <span class="dates">2022–2024</span>
+            <ul class="bullets">
+                <li>One of 3 cross-functional designers creating and scaling the flagship mobile booking platform (60K+ users), the restaurant and concierge-facing web apps, and the multi-channel editorial and brand presence.</li>
+                <li>Designed end-to-end UX/UI and worked with engineers to launch over 36 app features in 2 years, including Dorsia Payments, Split Pay, the Dorsia OS for restaurants, and the Book on Behalf concierge dashboard.</li>
+                <li>Managed and operated marketing design strategy for 8 markets, including New York, Miami, London, and the French Riviera.</li>
+                <li>Led speculative product and pitch deck design to enable strategic partnerships with Dom Pérignon and TAO Group Hospitality.</li>
+                <li>Worked closely with the CEO, leadership, and business development on a variety of presentations, supporting 4 key brand partnerships and a successful fundraising round led by Index Ventures.</li>
+            </ul>
+            </div>
+
+            <div class="entry">
+            <span class="title">Freelance Designer</span>
+            <span class="place">Self-employed</span>
+            <span class="dates">2020–2022</span>
+            <ul class="bullets">
+                <li>Specialized in digital UX/UI design, product strategy, graphic design, and front-end web development for 12+ clients.</li>
+                <li>Designed and developed a custom eCommerce storefront for SOSHE Beauty, a sustainable makeup company.</li>
+                <li>Designed and developed pitch decks, media assets, and website for Wright Electric, a zero-emissions aviation startup.</li>
+                <li>Designed user interfaces, brand strategy, and navigation logic for HAGS, a social app for high school students. Licensed bespoke handwritten font.</li>
+            </ul>
+            </div>
+
+            <div class="entry">
+            <span class="title">Creative Strategist</span>
+            <span class="place">verynice</span>
+            <span class="dates">2019–2020</span>
+            <ul class="bullets">
+                <li>Led product strategy, brand audits, organizational ethnography, and design research and design for clients of a design strategy studio serving nonprofits and social enterprises. Published methods as pro bono toolkits.</li>
+                <li>Led UX/UI for Keep A Breast Foundation&rsquo;s breast cancer self-screening mobile app.</li>
+                <li>Strategized and designed a culturally-sensitive health education website for Lebanese and Iraqi women with UNICEF and Women&rsquo;s Refugee Commission.</li>
+                <li>Other notable clients: Pancreatic Cancer Action Network, American Heart Association, Celebration Theatre, and Children’s Hospital.</li>
+                <li>Led website redesigns for verynice and its publishing arm, Reginald.</li>
+                <li>Facilitated design strategy workshops in the U.S., Mexico, and Colombia.</li>
+            </ul>
+            </div>
+
+            <div class="entry">
+            <span class="title">Co-founder, Partner</span>
+            <span class="place">Gridflower</span>
+            <span class="dates">2018–2019</span>
+            <ul class="bullets">
+                <li>Led a creative partnership focused on UX/UI design, branding, and presentation design for 11 clients, including entrepreneurs and corporations.</li>
+                <li>Created pitch decks used to close $1M+ funding for 3 early-stage startups.</li>
+                <li>Strategized and designed the mobile and web app for Viasat&rsquo;s first international expansion into Brazilian and Mexican markets.</li>
+            </ul>
+            </div>
+
+            <div class="entry">
+            <span class="title">Product Management Intern</span>
+            <span class="place">Adobe</span>
+            <span class="dates">2018</span>
+            <ul class="bullets">
+                <li>Collaborated with a new team to conceive Creative Cloud Education, a platform for potentially 45M U.S. students to explore creative tools in math, english, and science.</li>
+                <li>Conducted and analyzed 17 in-depth research interviews with stakeholders.</li>
+                <li>Led market landscape analysis of EdTech competitors.</li>
+            </ul>
+            </div>
+
+            <div class="entry">
+            <span class="title">User Experience Design Intern</span>
+            <span class="place">Adobe</span>
+            <span class="dates">2018</span>
+            <ul class="bullets">
+                <li>Strategized user navigation logic and page design for consumer and business users of the Adobe.com website.</li>
+                <li>Designed interface variants and conducted A/B usability tests to validate layouts.</li>
+            </ul>
+            </div>
+
+            <div class="entry">
+            <span class="title">Immersive Media Design Assistant</span>
+            <span class="place">Al Jazeera</span>
+            <span class="dates">2018</span>
+            <ul class="bullets">
+                <li>Created website design and media assets for immersive 360° videos reporting news stories from the Global South.</li>
+                <li>Designed graphics for “Yemen’s Skies of Terror,” winner of the 2018 Online Journalism Awards.</li>
+            </ul>
+            </div>
+
+            <div class="entry">
+            <span class="title">Market Research Consultant</span>
+            <span class="place">Adobe</span>
+            <span class="dates">2017–2018</span>
+            <ul class="bullets">
+                <li>Conducted and analyzed 40+ surveys and qualitative interviews with young digital creators to inform the design of student-facing portals on Adobe’s Behance.</li>
+            </ul>
+            </div>
+
+            <div class="entry">
+            <span class="title">Product Innovation Intern</span>
+            <span class="place">Viasat</span>
+            <span class="dates">2017</span>
+            <ul class="bullets">
+                <li>Conducted user research, UX strategy, and UI design for a mobile app used by North Americans age 65+ to purchase and manage their residential internet services.</li>
+            </ul>
+            </div>
+
+            <div class="entry">
+            <span class="title">Design Contractor</span>
+            <span class="place">Stanford Institute for Human-Centered Artificial Intelligence</span>
+            <span class="dates">2017</span>
+            <ul class="bullets">
+                <li>Created the data visualizations, brand identity, cover illustration, and print layout for the inaugural AI Index Report.</li>
+            </ul>
+            </div>
+            
+            <h2 id="grants">Awarded Grants</h2>
+
+            <div class="entry">
+            <span class="title">$24,000 Governable Spacemaker Fellowship</span>
+            <span class="place">Funded by Metagov</span>
+            <span class="dates">2025</span>
+            <ul class="bullets">
+                <li>Divided into 3 grants of $8,000 for myself and two teammates from Plot Twisters, Amanda Curtis and Jo Carlisle.</li>
+            </ul>
+            </div>
+
+            <div class="entry">
+            <span class="title">$50,000 Grand Prize Winner</span>
+            <span class="place">Funded by IDEO, Riot Games, Hopelab, and Susan Crown Exchange</span>
+            <span class="dates">2023</span>
+            <ul class="bullets">
+                <li>Plot Twisters was the Top Proposal Winner out of nearly 200 applicants for the Designing for Digital Thriving challenge.</li>
+            </ul>
+            </div>
+
+            <h2 id="residencies">Awarded Residencies &amp; Fellowships</h2>
+
+            <div class="entry">
+            <span class="title">Artist Fellow</span>
+            <span class="place">Governable Spacemakers</span>
+            <span class="dates">2025</span>
+            <ul class="bullets">
+                <li>Plot Twisters was the winner of the $24,000 fellowship to create an art project focused on reimagining digital governance in online spaces. Building our first minigame, Small Hassles Court, for <em>Twisterland</em>.</li>
+                <li>Funded by Metagov.</li>
+            </ul>
+            </div>
+
+            <div class="entry">
+            <span class="title">Storytelling Fellow</span>
+            <span class="place">Diverse Intelligences Summer Institute</span>
+            <span class="dates">2022</span>
+            <ul class="bullets">
+                <li>Participated in a 3-week transdisciplinary intensive consisting of lectures and salons about the origins, nature, and future of intelligences with 60 other artists, scientists, and academics.</li>
+                <li>Delivered Plot Twisters workshops and presentations for other attendees.</li>
+                <li>Funded by the Templeton World Charity Foundation.</li>
+            </ul>
+            </div>
+
+            <div class="entry">
+            <span class="title">Governance Archaeology Resident</span>
+            <span class="place">Media Economies Design Lab, University of Colorado Boulder</span>
+            <span class="dates">2021</span>
+            <ul class="bullets">
+                <li>Created a framework for consensual online community governance in Plot Twisters through a co-creative media archaeology excavation and research-action model.</li>
+                <li>Collaborated with a cohort of 17 artists, researchers, and technologists producing creative artifacts to advance digital democracy.</li>
+                <li>Exhibited at the 2021 United Nations Internet Governance Forum.</li>
+                <li>Funded by the Eutopia Foundation.</li>
+            </ul>
+            </div>
+
+            <div class="entry">
+            <span class="title">Research Resident</span>
+            <span class="place">Centre for Enabling Effective Altruism Learning and Research (CEEALAR)*</span>
+            <span class="dates">2021</span>
+            <ul class="bullets">
+                <li>Granted a 6-month funded residency at the co-living research center in Blackpool, UK with 25 other research residents.</li>
+                <li>Studied how homeostasis and allostasis enable wellbeing through lenses of social emotions and embodied cognition.</li>
+                <li>Supported community building through group dinners, game events, and writing inclusion-promoting policy.</li>
+            </ul>
+            </div>
+
+            <div class="entry">
+            <span class="title">Fellow</span>
+            <span class="place">Interact Fellowship</span>
+            <span class="dates">2020</span>
+            <ul class="bullets">
+                <li>Selected for the 2020 cohort of the community of mission-driven technologists.</li>
+            </ul>
+            </div>
+
+            <h2 id="honors">Awarded Honors</h2>
+
+            <div class="entry">
+            <span class="title">Top Proposal Winner</span>
+            <span class="place">OpenIDEO Designing for Digital Thriving Challenge</span>
+            <span class="dates">2023</span>
+            </div>
+
+            <div class="entry">
+            <span class="title">Webby Award in Advertising, Media, &amp; PR (Student)</span>
+            <span class="place">The Webby Awards</span>
+            <span class="dates">2019</span>
+            </div>
+
+            <div class="entry">
+            <span class="title">Renaissance Scholar</span>
+            <span class="place">University of Southern California</span>
+            <span class="dates">2019</span>
+            </div>
+
+            <div class="entry">
+            <span class="title">Award of Excellence (Short Form)</span>
+            <span class="place">World Journalism Education</span>
+            <span class="dates">2019</span>
+            </div>
+
+            <div class="entry">
+            <span class="title">Student Print/Digital Journalism Winner</span>
+            <span class="place">National Association of Hispanic Journalists</span>
+            <span class="dates">2019</span>
+            </div>
+
+            <div class="entry">
+            <span class="title">Minority/Immigration Reporting Winner</span>
+            <span class="place">Los Angeles Press Club</span>
+            <span class="dates">2019</span>
+            </div>
+
+            <div class="entry">
+            <span class="title">Mars City Design Challenge Winner</span>
+            <span class="place">Mars City Design</span>
+            <span class="dates">2018</span>
+            </div>
+
+            <div class="entry">
+            <span class="title">Trustee Scholar (full-tuition merit scholarship)</span>
+            <span class="place">University of Southern California</span>
+            <span class="dates">2015–2019</span>
+            </div>
+
+            <div class="entry">
+            <span class="title">Dean’s List</span>
+            <span class="place">University of Southern California</span>
+            <span class="dates">2015–2019</span>
+            </div>
+
+            <h2 id="writing">Published Writing</h2>
+
+            <div class="entry">
+            <span class="title">Cranmer, R. &amp; <span class="author">Zhang, JL.</span> <span class="talk-title">The Seeds of Futures Engagement: Oslo’s <span class="normal">Future Library</span> and Mortality Awareness on TikTok.</span></span>
+            <span class="place">Upcoming article in the <em>Journal of Future Studies</em>.</span>
+            <span class="dates">2025</span>
+            </div>
+
+            <h2 id="presentations">Presentations &amp; Exhibitions</h2>
+
+            <div class="entry">
+            <span class="title"><span class="author">Zhang, JL.</span>, Kim, YK., Parent, J., Chang, C., &amp; Bogatean, H. <span class="talk-title"><span class="normal">Twisterland</span> by Plot Twisters: Interactive online game world for fostering diverse personal narrative building.</span></span>
+            <span class="place">Presentation at Inclusive Gaming Conference hosted by University of Oxford in Oxford, United Kingdom</span>
+            <span class="dates">2024, May 1</span>
+            </div>
+
+            <div class="entry">
+            <span class="title"><span class="author">Zhang, JL.</span>, Kim, YK., &amp; Parent, J. <span class="talk-title">Plot Twisters: Designing <span class="normal">Twisterland</span>: An online game nurturing agency through self-reflection.</span></span>
+            <span class="place">Presentation at Hyperdigital Designs Workshop hosted by University of Cambridge in Cambridge, United Kingdom</span>
+            <span class="dates">2023, June 14</span>
+            </div>
+
+            <div class="entry">
+            <span class="title"><span class="author">Zhang, JL.</span>, Bogatean, H., Chang, C., Lim, A., &amp; Parent, J. <span class="talk-title">Plot Twisters: Creating an online game world for practicing self-regulation.</span></span>
+            <span class="place">Exhibition at Connected Life Conference hosted by University of Oxford in Oxford, United Kingdom</span>
+            <span class="dates">2022, June 17</span>
+            </div>
+
+            <div class="entry">
+            <span class="title"><span class="author">Zhang, JL.</span> &amp; Chang, C. <span class="talk-title">Excavations: Designing for Dialogue</span></span>
+            <span class="place">Online Exibition at United Nations Internet Governance Forum hosted by the International Congress Center in Katowice, Poland</span>
+            <span class="dates">2021, December 6–10</span>
+            </div>
+
+            <div class="entry">
+            <span class="title">Parent, J., Lim, A., &amp; <span class="author">Zhang, JL.</span> <span class="talk-title">Allostatic Types: Towards a Taxonomy of Relational Qualia</span></span>
+            <span class="place">Flash Talk at Neuromatch Conference 4.0 hosted by Neuromatch (online)</span>
+            <span class="dates">2021, December 1–2</span>
+            </div>
+
+            <h2 id="teaching">Teaching Experience</h2>
+
+            <div class="entry">
+            <span class="title">Teaching Assistant</span>
+            <span class="place">University of Southern California</span>
+            <span class="dates">2018</span>
+            <ul class="bullets">
+                <li>Supported 31 students in a course for the fundamentals of web, scripting, and interactivity (HTML, CSS, and JavaScript). Assisted lectures, led office hours, and facilitated exam reviews.</li>
+                <li>Mentored students to achieve the highest final exam average in two years (88%).</li>
+            </ul>
+            </div>
+
+            <div class="entry">
+            <span class="title">Teaching Assistant</span>
+            <span class="place">University of Southern California</span>
+            <span class="dates">2017</span>
+            <ul class="bullets">
+                <li>Supported 31 students in a course for server-side scripting (PHP), relational database design (MySQL), and data visualization. Assisted lectures, led office hours, and facilitated exam reviews.</li>
+            </ul>
+            </div>
+
+            <h2 id="other">Other Projects &amp; Service Work</h2>
+
+            <div class="entry">
+            <span class="title">Board Member</span>
+            <span class="place">Open Threads</span>
+            <span class="dates">2025–present</span>
+            <ul class="bullets">
+                <li>Supporting this sewing education nonprofit in Cleveland, Ohio to empower local residents in creative and economic upskilling.</li>
+            </ul>
+            </div>
+
+            <div class="entry">
+            <span class="title">Founding Member</span>
+            <span class="place">How to Play With Fire</span>
+            <span class="dates">2022–present</span>
+            <ul class="bullets">
+                <li>Co-organized and selected presenters for the in-person 2023 Hyperdigital Designs Workshop, hosted at the University of Cambridge’s Cambridge Digital Humanities.</li>
+            </ul>
+            </div>
+
+            <div class="entry">
+            <span class="title">Founding Member</span>
+            <span class="place">boom saloon</span>
+            <span class="dates">2022–present</span>
+            <ul class="bullets">
+                <li>Supporting this global media movement based in Scotland to democratize creativity through publications, digital features, and community salons online and offline.</li>
+            </ul>
+            </div>
+
+            <div class="entry">
+            <span class="title">Design Technologist</span>
+            <span class="place">Georgia State University</span>
+            <span class="dates">2022–present</span>
+            <ul class="bullets">
+                <li>Collaborating with The EMPOWER Lab, a clinical doctoral lab led by Dr. Isha Metzger, to design and validate digital trauma-informed cognitive behavioral therapy (TF-CBT) interfaces for African-American youth.</li>
+            </ul>
+            </div>
+
+            <div class="entry">
+            <span class="title">Policy Writer</span>
+            <span class="place">Centre for Enabling Effective Altruism Learning and Research (CEEALAR)*</span>
+            <span class="dates">2021</span>
+            <ul class="bullets">
+                <li>Developed and successfully sought approval for a 20-page policy document reforming the center’s granting process for applicant equity and process transparency.</li>
+            </ul>
+            </div>
+
+            <div class="entry">
+            <span class="title">Farmhand</span>
+            <span class="place">Worldwide Opportunities on Organic Farms (WWOOF)</span>
+            <span class="dates">2020</span>
+            <ul class="bullets">
+                <li>During COVID, I lived on a bamboo farm in coastal California for a summer and helped with farming and farm upkeep, including setting up drip irrigation for the property of 200+ bamboo trees.</li>
+            </ul>
+            </div>
+
+            <div class="entry">
+            <span class="title">Team Lead</span>
+            <span class="place">Changeist</span>
+            <span class="dates">2019–20</span>
+            <ul class="bullets">
+                <li>Facilitated discussions with middle and high school students about identity and social issues. Supported their relationships with social justice organizations in the Los Angeles area.</li>
+            </ul>
+            </div>
+
+            <div class="entry">
+            <span class="title">Virtual Reality Journalist</span>
+            <span class="place">JOVRNALISM</span>
+            <span class="dates">2018–19</span>
+            <ul class="bullets">
+                <li>Produced &ldquo;The Deported: Life Beyond the Border,&rdquo; a four-episode VR series about deportees in Tijuana, Mexico with a team of 12. Led interviews in Spanish, filmed with 360° cameras, developed scripts and storyboards, and conducted user testing.</li>
+                <li>2019 Webby Award winner in Advertising, Media, &amp; PR (Student).</li>
+            </ul>
+            </div>
+            
+            <hr></hr>
+
+            <p>* I'm aware of the controversy with Effective Altruism (EA) and I learned a lot from this experience—feel free to ask me about it!</p>
+        </div>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,245 @@
+* {
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+::selection {
+    background: #2544A8;
+    color: #fff;
+}
+
+@font-face {
+    font-family: "FK Raster Grotesk Smooth";
+    src: url('FKRasterGrotesk-Smooth.woff') format("woff");
+}
+
+body {
+    font-family: "Times New Roman", serif;
+    color: #2544A8;
+    overflow-x: hidden;
+}
+    
+.wrap {
+    margin: 20px auto 10px;
+    padding: 20px 16px;
+    overflow-x: hidden;
+}
+
+.little-jenny {
+    display: block;
+    margin: auto;
+    height: 160px;
+}
+
+ul.nav {
+    position: fixed;
+    width: auto;
+    top: 4px;
+    left: 16px;
+    font: normal 1em/1em "Arial", sans-serif;
+    letter-spacing: 0.0025em;
+    text-transform: uppercase;
+    list-style-type: none;
+    text-align: left;
+}
+
+    ul.nav li {
+        margin: 20px 0;
+    }
+
+    ul.nav a {
+        text-decoration: none;
+        background: #fff;
+        border: 1px solid rgb(102, 126, 205);
+        padding: 4px 6px;
+        border-radius: 4px;
+        background-position: left -20px center;
+    }
+
+        ul.nav a:hover {
+            background: #fff url('favicon.png') no-repeat;
+            background-size: auto 70%;
+            background-position: left 6px center;
+            border: 1px solid #2544A8;
+            padding: 4px 6px 4px 30px;
+        }
+
+a {
+    color: #2544A8;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1.5px;
+    transition: 100ms;
+}
+
+    a:hover {
+        text-underline-offset: 4px;
+        text-decoration-thickness: 2px;
+    }
+
+hr {
+    margin: 32px auto;
+    background: #2544A8;
+    border: none;
+    height: 1px;
+}
+
+h1 {
+    margin: 32px auto;
+    font: 400 1.8em/1.4em "FK Raster Grotesk Smooth", sans-serif;
+    letter-spacing: -0.05em;
+    text-align: center;
+}
+
+h2 {
+    margin: 60px 0 20px;
+    font: 300 1.75em/1.25em "quimby-gubernatorial", sans-serif;
+    text-align: center;
+}
+
+h3 {
+    display: block;
+    margin: 8px 0;
+    font: 600 0.9em/1.4em "FK Raster Grotesk Smooth", sans-serif;
+    text-transform: uppercase;
+}
+
+p {
+    line-height: 1.4em;
+}
+
+.updates {
+    margin: 40px -100px 0;
+    padding: 30px 95px 40px;
+    text-align: center;
+    border: 2px #2544A8 solid;
+    border-radius: 100%;
+}
+
+    .updates p {
+        margin: 20px auto;
+    }
+
+    .updates h2 {
+        margin: 16px 0 20px;
+    }
+
+    .updates p:last-child {
+        width: 75%;
+    }
+
+.cv-wrap {
+    margin: 60px auto 20px;
+}
+
+.entry {
+    margin: 32px 0;
+}
+
+.title {
+    display: block;
+    margin: 8px 0;
+    font: 400 1.1em/1.4em "FK Raster Grotesk Smooth", sans-serif;
+}
+
+    .title .author {
+        font-weight: 600;
+    }
+
+    .title .talk-title {
+        font-style: italic;
+    }
+
+.place {
+    display: block;
+    margin: 4px 0;
+    font-size: 1.1em;
+}
+
+.dates {
+    display: block;
+    margin: 8px 0;
+    font-size: 1.1em;
+}
+
+ul.bullets {
+    padding: 0 0 0 20px;
+}
+
+    .bullets li {
+        margin: 8px 0;
+        line-height: 1.25em;
+    }
+
+.footer {
+    position: relative;
+    margin: 10px auto 20px;
+    width: 100%;
+}
+
+    .footer p {
+        text-align: center;
+        font-size: 0.9em;
+        margin: 1px 0;
+    }
+
+
+@media (min-width: 480px) {
+
+    .wrap {
+        margin: 30px auto 20px;
+        max-width: 800px;
+        overflow-x: visible;
+    }
+
+    .footer {
+        margin: 0;
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        width: 200px;
+    }
+
+        .footer p {
+            text-align: left;
+        }
+
+    h1 {
+        font: 400 3em/1.25em "FK Raster Grotesk Smooth", sans-serif;
+        max-width: 600px;
+    }
+
+    h2 {
+        margin: 80px 0 20px;
+        font: 300 2em/1.25em "quimby-gubernatorial", sans-serif;
+    }
+
+    .updates {
+        margin: 60px 0 0;
+        padding: 30px 60px 48px;
+        text-align: center;
+        border: 2px #2544A8 solid;
+        border-radius: 100%;
+    }
+
+        .updates p:last-child {
+            width: 80%;
+        }
+
+    .cv-wrap {
+        margin: 80px auto 30px;
+        max-width: 650px;
+    }
+
+    .entry {
+        margin: 40px 0;
+    }
+
+    .title {
+        font: 400 1.15em/1.4em "FK Raster Grotesk Smooth", sans-serif;
+    }
+
+}

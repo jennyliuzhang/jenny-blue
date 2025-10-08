@@ -18,6 +18,10 @@
 <link rel="stylesheet" type="text/css" href="style.css">
 
 <style>
+    .bio-h1 {
+        max-width: 360px;
+    }
+
     .jenny-facts {
         display: block;
         margin: 70px auto 20px;
@@ -122,6 +126,14 @@
         font-size: 0.9em;
         text-align: justify;
     }
+
+    @media (min-width: 480px) {
+
+        .bio-h1 {
+            max-width: 500px;
+        }
+
+    }
 </style>
 
 </head>
@@ -131,7 +143,7 @@
     <div class="wrap">
         <img class="little-jenny" src="jenny.gif" alt="">
 
-        <h1>Jenny is always fresh, never frozen!</h1>
+        <h1 class="bio-h1">Jenny is always fresh, never frozen!</h1>
 
         <ul class="nav">
             <li><a href="index.html">Index</a></li>

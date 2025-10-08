@@ -47,24 +47,24 @@ ul.nav {
 }
 
     ul.nav li {
-        margin: 20px 0;
+        margin: 24px 0;
     }
 
     ul.nav a {
         text-decoration: none;
         background: #fff;
         border: 1px solid rgb(102, 126, 205);
-        padding: 3px 6px;
+        padding: 4px 6px;
         border-radius: 4px;
         background-position: left -20px center;
     }
 
         ul.nav a:hover {
             background: #fff url('favicon.png') no-repeat;
-            background-size: auto 70%;
+            background-size: auto 60%;
             background-position: left 6px center;
             border: 1px solid #2544A8;
-            padding: 3px 6px 3px 30px;
+            padding: 4px 6px 4px 30px;
         }
 
 a {
@@ -176,7 +176,7 @@ ul.bullets {
 
 .footer {
     position: relative;
-    margin: 10px auto 20px;
+    margin: 10px auto 30px;
     width: 100%;
 }
 

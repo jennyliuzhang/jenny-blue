@@ -39,7 +39,7 @@ ul.nav {
     width: auto;
     top: 4px;
     left: 16px;
-    font: normal 1em/1em "Arial", sans-serif;
+    font: 400 1em/1.2em "Arial", sans-serif;
     letter-spacing: 0.0025em;
     text-transform: uppercase;
     list-style-type: none;
@@ -54,7 +54,7 @@ ul.nav {
         text-decoration: none;
         background: #fff;
         border: 1px solid rgb(102, 126, 205);
-        padding: 4px 6px;
+        padding: 3px 6px;
         border-radius: 4px;
         background-position: left -20px center;
     }
@@ -64,7 +64,7 @@ ul.nav {
             background-size: auto 70%;
             background-position: left 6px center;
             border: 1px solid #2544A8;
-            padding: 4px 6px 4px 30px;
+            padding: 3px 6px 3px 30px;
         }
 
 a {

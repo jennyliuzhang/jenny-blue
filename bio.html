@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>Jenny Liu Zhang is an American digital designer :)</title>
+<link rel="icon" type="image/png" href="favicon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://use.typekit.net/ikv0scv.css">
+
+<script src="/js/cursor.js"></script>
+<script src="/js/nav.js"></script>
+<script src="/js/footer.js"></script>
+
+<link rel="stylesheet" type="text/css" href="style.css">
+
+<style>
+
+    .bio-butterfly {
+        margin: 0 0 -0.2em 0;
+        height: 1.15em;
+    }
+
+    .boilerplate {
+        margin: 60px 0 0 0;
+        border: 2px solid #2544A8;
+        padding: 24px 24px 8px;
+        border-radius: 12px;
+    }
+
+    .boilerplate-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 16px;
+    }
+
+    .boilerplate-header h3 {
+        margin: 0;
+        font-size: 1em;
+        color: #2544A8;
+    }
+
+    .boilerplate-copy {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 2em;
+        font-weight: 600;
+        color: #2544A8;
+        margin: -8px 0 0;
+        padding: 0px 8px 4px;
+        border: 1px solid #fff;
+        border-radius: 4px;
+        transition: border 0.15s, color 0.15s;
+        line-height: 1;
+    }
+
+    .boilerplate-copy:hover {
+        border: 1px solid #2544A8;
+        border-radius: 4px;
+    }
+
+    .boilerplate-copy {
+        position: relative;
+    }
+
+    .boilerplate-copy-tooltip {
+        position: absolute;
+        top: calc(100% + 6px);
+        right: 0;
+        background: #fff;
+        color: #2544A8;
+        font-size: 0.5em;
+        font-weight: 400;
+        font-family: "Times New Roman", serif;
+        white-space: nowrap;
+        padding: 6px 8px;
+        border: 1px solid #2544A8;
+        border-radius: 4px;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.2s;
+    }
+
+    .boilerplate-copy-tooltip.visible { opacity: 1; }
+
+    .boilerplate p {
+        margin: 0 0 20px;
+    }
+
+    .portraits {
+        display: block;
+        margin: 50px auto 30px;
+        width: 100%;
+        max-width: 600px;
+    }
+
+    @media (min-width: 480px) {
+
+
+    }
+
+    /* === About section === */
+
+    .about-jennyHeadline {
+        margin: 0.75em 0;
+        text-align: left;
+        font: 400 1.8em/1.3em "Times New Roman", serif;
+        letter-spacing: 0;
+        max-width: none;
+    }
+
+    .about-introduction {
+        margin: 0 0 20px;
+        overflow: hidden;
+    }
+
+    .about-introduction p {
+        margin: 0 0 20px;
+    }
+
+    .about-introduction p:first-of-type::first-letter {
+        font-family: "Times New Roman", serif;
+        font-size: 3em;
+        font-weight: 400;
+        line-height: 0.82;
+        float: left;
+        margin: 0.08em 0.09em 0 0;
+    }
+
+    .about-introduction figure {
+        float: right;
+        width: 240px;
+        margin: 0 0 16px 24px;
+    }
+
+    .about-introduction figure img {
+        width: 100%;
+        object-fit: cover;
+        border-radius: 6px;
+        display: block;
+    }
+
+    .about-introduction figcaption {
+        margin-top: 12px;
+        font-family: Arial, sans-serif;
+        font-size: 0.8em;
+        line-height: 1.4;
+    }
+
+    @media (max-width: 540px) {
+        .about-introduction figure {
+            float: none;
+            width: 100%;
+            margin: 0 0 20px 0;
+        }
+
+        .about-introduction figure img {
+            border-radius: 12px;
+        }
+    }
+
+    .about-btn {
+        display: inline-block;
+        margin: 0.5em 0;
+        padding: 0.6em 1em;
+        background: #2544A8;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 6px;
+        font: 400 0.85em/1.2em "FK Raster Grotesk Smooth", sans-serif;
+        letter-spacing: 0.02em;
+        transition: background 0.2s;
+    }
+    .about-btn:hover { background: #1a3480; }
+
+    .about-creative-principles {
+        padding: 20px 0;
+    }
+
+    .about-creative-principles h2 {
+        margin: 50px 0 20px;
+    }
+
+    .about-principle-tiles {
+        margin: 2em 0 1em;
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 30px;
+    }
+
+    .about-principle-tile {
+        padding: 20px 20px 20px;
+        border-radius: 15px;
+        border: 1px solid #2544A8;
+    }
+
+    .about-principle-tile h3 {
+        font-size: 1.3em;
+        text-align: center;
+        text-transform: none;
+        font-weight: 400;
+        letter-spacing: -0.025em;
+    }
+
+    .about-principle-tile blockquote {
+        text-align: center;
+        margin: 1em 0;
+        font: 400 normal 1.15em/1.4em "Arial", sans-serif;
+        padding: 0;
+        letter-spacing: -0.025em;
+    }
+
+    .about-principle-tile p.about-author {
+        margin: 0px 0 20px 0;
+        font: 400 normal 0.85em/1.4em "Arial", sans-serif;
+        letter-spacing: 0.0025em;
+        text-transform: uppercase;
+        text-align: center;
+    }
+
+    .about-principle-tile p {
+        text-align: center;
+    }
+
+    .about-axioms {
+        margin: 40px 0 0;
+    }
+
+    .about-axiomTile {
+        padding: 0 0 20px;
+    }
+
+    .about-axiomTile h4 {
+        margin: 20px 0 16px;
+        font: 400 1.1em/1.3em "FK Raster Grotesk Smooth", sans-serif;
+    }
+
+    .about-axiomTile p {
+        
+    }
+
+    @media screen and (min-width: 540px) {
+
+        .about-jennyHeadline { font-size: 2.7em; }
+
+        .about-axiomTiles {
+            margin: 0 0 20px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px 40px;
+        }
+
+        .about-axiomTile {
+            padding: 0 0 20px;
+            border-bottom: 1px solid #2544A8;
+        }
+
+        .about-axiomTile:nth-last-child(-n+2) { border: none; }
+    }
+
+    @media screen and (min-width: 768px) {
+        
+        .bio-h1 {
+            width: 600px;
+        }
+
+        .about-jennyHeadline { margin: 0.4em 0 0.5em; }
+
+        .about-creative-principles { padding: 10px 0; }
+
+        .about-principle-tiles {
+            margin: 50px 0 0px;
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .about-principle-tile {
+            padding: 24px 24px 32px;
+        }
+    }
+
+    @media screen and (min-width: 960px) {
+
+        .about-jennyHeadline { font-size: 3em; }
+
+        .about-principle-tile blockquote { margin: 1em 1.5em; }
+    }
+
+    @media screen and (min-width: 1600px) {
+
+        .about-jennyHeadline { font-size: 3.5em; }
+    }
+</style>
+
+</head>
+
+<body>
+
+    <div class="wrap">
+        <img class="little-jenny" src="jenny.gif" alt="">
+
+        <h1 class="bio-h1">Jenny Liu Zhang is a 22nd-century girl <img class="bio-butterfly" src="/img/butterfly.gif" alt=""></h1>
+
+        <site-nav></site-nav>
+
+        <div class="boilerplate">
+            <div class="boilerplate-header">
+                <h3>Professional boilerplate</h3>
+                <button class="boilerplate-copy" title="Copy to clipboard">&#x2398;<span class="boilerplate-copy-tooltip">Copied!</span></button>
+            </div>
+            <p>Jenny Liu Zhang is an American digital designer who blends speculative practice and humanist theory to create meaningful online worlds. She champions "conviviality," or the ability of our tools to nurture human agency, rather than limit and deaden it. Her projects focus on how people make sense of their lives at the personal level, because she believes that individual agency is where social change begins.</p>
+            <p>Currently, she works as a full-time product designer at Monarch to foster personal financial literacy and empowerment. She has also been leading Plot Twisters since 2020, an award-winning game design collective creating a digital game world for personal narrative building. This game, <em>Twisterland</em> (exp. 2028), explores the language around emotions, wellbeing needs, and values in consensual social relationships, and how playful worldbuilding can encourage the accessibility of these topics. She also maintains www.jenny.world, her personal website for design work, writing, and creative expressions.</p>
+            <p>Jenny holds a B.S. in Arts, Technology and Business of Innovation from the University of Southern California, and an MSc in Narrative Futures from the University of Edinburgh.</p>
+        </div>
+
+        <h2>About Me</h2>
+        <h3 style="text-align: center; margin-bottom: 30px;">7 min read</h3>
+
+        <div class="about-introduction">
+
+            <p>As a kid, I invented a sunny chain of islands called the Jenelan Islands and daydreamed about how people might live life on them. I took up drawing to make the Jenelan Islands elaborately real. During free afternoons at my Montessori school, I drew mountains, homes, and boutiques. I designed community centers and field sports that the islanders would play. I even made up occupations, then a marketplace, then a voluntary government system. Time flew by when I was on the Jenelan Islands.</p>
+
+            <figure>
+                <img src="/img/butterfly1.png" alt="A digital composition I made when I was 11: Butterfly Realm">
+                <figcaption>From a collection of digital collages I made at age 11 called "The Butterfly Realm" :)</figcaption>
+            </figure>
+            <p>Growing up with immigrant parents meant they were busy making ends meet most days, so I was often left to my drawings, books, and the family computer. I think I owe my visual and narrative mind to this period. My creativity got superpowers when I was 11: I began following and contributing to graphic design blogs. I picked up Adobe software and self-taught HTML, CSS, and JavaScript to build my own art websites. The islands went digital: I made fanart for my favorite online games, pirated video software to make lyric videos on YouTube, and peddled handmade fonts, AOL icons, and Photoshop brushes. My first domain was imaJENation.net. My style has always been playfully romantic: bright colors, flowers, and butterflies.</p>
+                 
+            <figure>
+                <img src="/img/painting-deer.jpg" alt="One of my many art projects.">
+                <figcaption>My education has always been interdisciplinary and hands-on.</figcaption>
+            </figure>
+            <p>Yet I came of age in south Seattle as a Chinese-American with divorced parents. I had all kinds of questions about class, race, family, the flaws of standardized education, feminism, and mental health. I traveled in my summers, tutored kids, picked up screenprinting, and designed newsletters and websites for local businesses. I deepened my interest in literature, counterstories, and moral exploration. More than anything, I wanted to leave home and go to a good college. I attended the University of Southern California on a full-ride merit scholarship, graduating with an interdisciplinary B.S. in the &ldquo;Arts, Technology and Business of Innovation&rdquo; from the USC Iovine and Young Academy.</p>
+
+            <p>Let me skip ahead. Just know that my teens and early twenties were equally full of growth and mess. For years, I couldn't figure out what I was meant to do in my career, as someone a bit too pedantic for tech entrepreneurship, too businessy for the arts, and too unorthodox for academic research. And I was young, impatient, and equipped with juvenile interoception: I struggled with physical and mental health, boundaries, womanhood, and navigating interpersonal relationships. After a few health scares and breakups and long flights nomading around Europe and Asia for several years, I finally started to sniff out my way and landed back in the U.S. in Cleveland, Ohio.</p>
+
+            <figure>
+                <img src="/img/presentation.jpg" alt="Presenting a Plot Twisters minigame in Boulder, Colorado.">
+                <figcaption>Presenting Small Hassles Court, one of the Plot Twisters minigames.</figcaption>
+            </figure>
+
+            <p>What I did keep doing, through all of it, was make things. I was lucky my creative energy had somewhere specific to go: Plot Twisters, my game design collective. I founded the project from the ground up: we're a volunteer team of eight designers, artists, and researchers who understand self-awareness as a lifelong practice. We've been building <em>Twisterland</em>, a colorful online game world for personal narrative building, to help foster that skill. I return to gamemaking to transform those nebulous, hard, and emotional life lessons into something rich, silly, and meaningful. We have exhibited game prototypes, playing cards, and concept art in all kinds of forums, from the United Nations to Oxford University, and secured funding from organizations like IDEO and Riot Games. Plot Twisters remains an aspirational creative channel for me, and the project I'm most proud of.</p>
+
+            <p>I did find my career footing as a digital designer, slowly but surely. I freelanced design and web development, worked at a design studio in LA, and interned at Adobe for nearly a year. I earned my stripes as the founding designer of Dorsia, a hospitality tech startup. Today, I work as a product designer at Monarch, designing tools to support individuals and couples to manage their financial health. I'm settling into the kind of digital designer I am: mission-driven and philosophical, yet scrappy, non-dogmatic, and willing to wear whatever hats necessary.</p>
+
+            <p>I also see my academic career as married to my design practice. I finished my Master's degree in &ldquo;Narrative Futures,&rdquo; from the Edinburgh Futures Institute at the University of Edinburgh. I wrote my thesis about how digital products are interactive narrative technologies that alter behavior, and their risk and potentials on human agency through Ivan Illich's 1973 concept of conviviality.</p>
+
+            <figure>
+                <img src="/img/bday.jpg" alt="Birthday!">
+                <figcaption>Growing up is soooo nonlinear.</figcaption>
+            </figure>
+            <p>I read recently that if your life were a 24-hour day and you were in your 30s, it wouldn't even be noon yet. This restores me. In my late 20s, I moved to Ohio on the intuition that getting honest about my self-care was overdue. As young people do, I often judged myself against the lives and milestones of my peers, feeling defective in comparison. But how can I design tools that foster self-compassion if I'm not regularly compassionate to myself? Just like how I spent my youth trying to shoehorn my offbeat career interests only to realize my calling is meant to be offbeat and manifold, I’m finding the same lesson of self-acceptance regarding my lifestyle, boundaries, and relationships. My nature—unconventional, independent—is meant to be embraced, and I’m actively carving out my own path and thinking critically about advice.</p>
+            
+            <p>Theologian Pierre Teilhard de Chardin once said: "We are not human beings having a spiritual experience; we are spiritual beings having a human experience." I know there's a whole archetype of people who believe they are old souls, seasoned with the wisdom of many past lives on Earth. But I've never related to this. At the risk of sounding woo-woo, my most personal admission is that all this time, I've felt like a new soul. I genuinely feel like this is one of my first times on this planet as a human, maybe even <em>the</em> first. I'm learning things as if I'm new here, and I've blundered plenty. This feeling ties together all my projects, my appetite to learn and compete, my sensitivity to failure, all my foolish rushing and fear and reactivity and perfectionism. Forgive me, I'm new. I'm still getting the hang of how my spirit moves here.</p>
+
+            <figure>
+                <img src="/img/bloom.gif" alt="Birthday!">
+                <figcaption>I'd call my memoir one day "Jenny and the Infinite Bloom."</figcaption>
+            </figure>
+            <p>So I daydream this lore about myself, to paint context for all my mistakes and fuel my resilience: maybe I'm a new soul here because I was born too early. Maybe my soul was supposed to incarnate on Earth in 100 years from now, in the 22nd century, not this century. It feels like I should be floating around other universes incurring karmic lessons, getting a little less naive. But no, I'm here, a little prematurely, now. And while I'm here, I want to make the best of my beingness on Earth.</p>
+            
+            <p>What have I learned so far? I like making art, tools, and environments, and I want to make them well. I like virtual worlds, speculative thinking, and stories. I’m drawn to making experiences that belong to livable futures that can sustain centuries forward. And through these mediums, I want to express what I see as common priorities of the human project: strengthening self-knowledge as the first arena of social change; agency over the narratives we inherit from a young age; interpersonal understanding; and serious play, hope, and delight.</p>
+
+        </div>
+
+        <div class="about-creative-principles">
+            <h2>My Creative Principles</h2>
+
+            <div class="about-principle-tiles">
+                <div class="about-principle-tile">
+                    <h3>Lead With the Vision</h3>
+                    <blockquote>&ldquo;The ultimate, hidden truth of the world is that it is something that we make, and could just as easily make differently.&rdquo;</blockquote>
+                    <p class="about-author">David Graeber</p>
+                    <p>To design is to make something <em>by design</em>. When I&rsquo;m inspired by a project vision, I seek to clarify its values, affordances, and design criteria&mdash;and this is an ongoing process. I holistically consider users, consumers, and stakeholders to ensure the end product is aligned with the future we’re all striving for.</p>
+                </div>
+
+                <div class="about-principle-tile">
+                    <h3>Curiosity Over Assumptions</h3>
+                    <blockquote>&ldquo;The world is full of magic things, patiently waiting for our senses to grow sharper.&rdquo;</blockquote>
+                    <p class="about-author">William Butler Yeats</p>
+                    <p>Rather than dismissing an idea early on due to an initial bias or negative reaction, I try to unpack what my response reveals about myself and how I interpret the world around me&mdash;and whether my interpretations are useful in context. Though this is hard to consistently do, I find that when I let go of overly quick or critical assumptions, I&rsquo;m more capable of staying open to other subtexts and possibilities, especially what are known as &ldquo;blind spots&rdquo; and &ldquo;unknowns&rdquo; in <a href="https://en.wikipedia.org/wiki/Johari_window" target="_blank">Johari&rsquo;s Window</a>.</p>
+                </div>
+
+                <div class="about-principle-tile">
+                    <h3>Build on Collective Wisdom</h3>
+                    <blockquote>&ldquo;There is a conversation in the room that only these people at this moment can have. Find it.&rdquo;</blockquote>
+                    <p class="about-author">adrienne maree brown</p>
+                    <p>Every project is a melding of the unique tastes, knowledge, and perspectives of those involved. Just as biodiversity strengthens ecosystems, cross-functional and interdisciplinary exchange enriches and optimizes creativity. Great insights are revealed where individual experiences resonate or overlap, making the whole stronger than the sum of its parts.</p>
+                </div>
+
+                <div class="about-principle-tile">
+                    <h3>Surprise and Delight</h3>
+                    <blockquote>&ldquo;Anyone who&rsquo;s a chef, who loves food, ultimately knows that all that matters is: &lsquo;Is it good? Does it give pleasure?&rsquo;&rdquo;</blockquote>
+                    <p class="about-author">Anthony Bourdain</p>
+                    <p>A good experience is made of little memories that bring happiness. I strive to design the way I give gifts to friends: with attention to the details. Whether through a clever interaction or beautiful visual motif, I seek wonder and joy in my work. I want to make it taste good.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="about-axioms">
+            <h2>Axioms I Like</h2>
+
+            <div class="about-axiomTiles">
+                <div class="about-axiomTile">
+                    <h4>Yes, and</h4>
+                    <p>This is the famous first rule of improv. It’s hard to get anywhere in creativity if you’re always saying &ldquo;no&rdquo; and never playing an idea forward.</p>
+                </div>
+
+                <div class="about-axiomTile">
+                    <h4>Ideas are cheap</h4>
+                    <p>Execution is expensive.</p>
+                </div>
+
+                <div class="about-axiomTile">
+                    <h4>Kill your darlings</h4>
+                    <p>I learned this phrase from Mrs. Wray, one of my high school English teachers, and it has never left me. Prioritize effective work over personal attachment.</p>
+                </div>
+
+                <div class="about-axiomTile">
+                    <h4>As above, so below</h4>
+                    <p>Creations are reflections of their creators. Designs are reflections of their processes. Large initiatives are made up of little activities imbued with the same values. I think of <a href="https://en.wikipedia.org/wiki/Fractal" target="_blank">fractals</a> and <a href="https://en.wikipedia.org/wiki/Conway%27s_law" target="_blank">Conway&rsquo;s Law</a>.</p>
+                </div>
+
+                <div class="about-axiomTile">
+                    <h4>Enjoy and be one with your work</h4>
+                    <p>&ldquo;Whatever the tasks, do them slowly and with ease, in mindfulness. Don’t do any task in order to get it over with. Resolve to do each job in a relaxed way, with all your attention.&rdquo; &mdash; Thich Nhat Hanh</p>
+                </div>
+
+                <div class="about-axiomTile">
+                    <h4>Education is expensive, but so is ignorance</h4>
+                    <p>Growth never comes cheap. I’ve spent a lot of time, energy, and money on mistakes that taught me important life lessons. I consider this &ldquo;life tax,&rdquo; but I’ve learned that I can’t evolve if I don’t pay it.</p>
+                </div>
+
+                <div class="about-axiomTile">
+                    <h4>Every problem has a solution</h4>
+                    <p>My mom raised me with this one.</p>
+                </div>
+
+                <div class="about-axiomTile">
+                    <h4>Luck is opportunity meets preparation</h4>
+                    <p>Good things take both hard work and opening doors. Outcomes are in our control.</p>
+                </div>
+
+                <div class="about-axiomTile">
+                    <h4>Trends come and go</h4>
+                    <p>Almost everything we make will expire&mdash;some tastes just have longer lifecycles. Generally, it&rsquo;s good to err on the side of long-lasting. But it can also be fun, and sometimes the best choice, to make the ephemeral thing.</p>
+                </div>
+
+                <div class="about-axiomTile">
+                    <h4>The devil&rsquo;s in the details</h4>
+                    <p>Sometimes it comes down to the little things, so it&rsquo;s good to be thorough and do your due diligence.</p>
+                </div>
+
+                <div class="about-axiomTile">
+                    <h4>Always do your best</h4>
+                    <p>Your &ldquo;best&rdquo; will change based on your circumstances at any point in time, but always be positive and work with what you have.</p>
+                </div>
+
+                <div class="about-axiomTile">
+                    <h4>Done is better than perfect</h4>
+                    <p>In the times when our &ldquo;best&rdquo; disappoints us (inevitable), accept that progress is better than nothing, then rest and prepare for next time.</p>
+                </div>
+            </div>
+        </div>
+
+    <site-footer></site-footer>
+
+    <script>
+    document.querySelector('.boilerplate-copy').addEventListener('click', function() {
+        const boilerplate = this.closest('.boilerplate');
+        const text = Array.from(boilerplate.querySelectorAll('p'))
+            .map(p => p.innerText).join('\n\n');
+        navigator.clipboard.writeText(text).then(() => {
+            const tooltip = this.querySelector('.boilerplate-copy-tooltip');
+            tooltip.classList.add('visible');
+            setTimeout(() => tooltip.classList.remove('visible'), 1500);
+        });
+    });
+    </script>
+
+</body>
+</html>

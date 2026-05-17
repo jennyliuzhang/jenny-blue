@@ -1,0 +1,325 @@
+* {
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+::selection {
+    background: #2544A8;
+    color: #fff;
+}
+
+@font-face {
+    font-family: "FK Raster Grotesk Smooth";
+    src: url('FKRasterGrotesk-Smooth.woff') format("woff");
+}
+
+body {
+    font-family: "Times New Roman", serif;
+    color: #2544A8;
+    overflow-x: hidden;
+    font-size: 1.1em;
+}
+    
+.wrap {
+    margin: 20px auto 10px;
+    padding: 20px 24px;
+    overflow-x: hidden;
+}
+
+.little-jenny {
+    display: block;
+    margin: auto;
+    height: 150px;
+}
+
+.sidebar-panel {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 200px;
+    height: 100%;
+    z-index: 998;
+}
+
+@media (max-width: 900px) {
+    .sidebar-panel {
+        display: block;
+        background: #fff;
+        border-right: 1px solid #2544A8;
+        opacity: 1;
+        transition: opacity 50ms ease;
+    }
+
+    .sidebar-panel.nav-hidden {
+        opacity: 0;
+        pointer-events: none;
+    }
+}
+
+.nav-toggle {
+    position: fixed;
+    top: 16px;
+    left: 0;
+    padding: 0 0 0 16px;
+    cursor: pointer;
+    z-index: 1001;
+    display: block;
+    width: 36px;
+    background: #fff;
+    border-radius: 4px;
+}
+
+ul.nav.nav-hidden {
+    pointer-events: none;
+    background: transparent;
+}
+
+site-nav {
+    display: block;
+    position: fixed;
+    top: 60px;
+    left: 0;
+    z-index: 1000;
+}
+
+ul.nav {
+    width: auto;
+    padding: 0 0 0 16px;
+    font: 400 0.85em/1.2em "Arial", sans-serif;
+    letter-spacing: 0.0025em;
+    text-transform: uppercase;
+    list-style-type: none;
+    text-align: left;
+    background: linear-gradient(to right, white 30%, transparent 30%);
+}
+
+    ul.nav li {
+        margin: 3px 0;
+        opacity: 1;
+        transform: translateY(0);
+        transition: opacity 100ms ease, transform 100ms ease;
+    }
+
+    /* ul.nav li.nav-group-label {
+        font-size: 0.7em;
+        margin-top: 10px;
+        pointer-events: none;
+        letter-spacing: 0.08em;
+    } */
+
+    ul.nav.nav-hidden li {
+        opacity: 0;
+        transform: translateY(-2px);
+    }
+
+    ul.nav li:nth-child(1) { transition-delay: 100ms; }
+    ul.nav li:nth-child(2) { transition-delay: 120ms; }
+    ul.nav li:nth-child(3) { transition-delay: 180ms; }
+    ul.nav li:nth-child(4) { transition-delay: 220ms; }
+    ul.nav li:nth-child(5) { transition-delay: 260ms; }
+    ul.nav li:nth-child(6) { transition-delay: 300ms; }
+    ul.nav li:nth-child(7) { transition-delay: 340ms; }
+    ul.nav li:nth-child(8) { transition-delay: 380ms; }
+    ul.nav li:nth-child(9) { transition-delay: 420ms; }
+    ul.nav li:nth-child(10) { transition-delay: 460ms; }
+    ul.nav li:nth-child(11) { transition-delay: 500ms; }
+    ul.nav li:nth-child(12) { transition-delay: 540ms; }
+    ul.nav li:nth-child(13) { transition-delay: 580ms; }
+    ul.nav li:nth-child(14) { transition-delay: 620ms; }
+
+    ul.nav.nav-hidden li:nth-child(1) { transition-delay: 520ms; }
+    ul.nav.nav-hidden li:nth-child(2) { transition-delay: 480ms; }
+    ul.nav.nav-hidden li:nth-child(3) { transition-delay: 440ms; }
+    ul.nav.nav-hidden li:nth-child(4) { transition-delay: 400ms; }
+    ul.nav.nav-hidden li:nth-child(5) { transition-delay: 360ms; }
+    ul.nav.nav-hidden li:nth-child(6) { transition-delay: 320ms; }
+    ul.nav.nav-hidden li:nth-child(7) { transition-delay: 280ms; }
+    ul.nav.nav-hidden li:nth-child(8) { transition-delay: 240ms; }
+    ul.nav.nav-hidden li:nth-child(9) { transition-delay: 200ms; }
+    ul.nav.nav-hidden li:nth-child(10) { transition-delay: 160ms; }
+    ul.nav.nav-hidden li:nth-child(11) { transition-delay: 120ms; }
+    ul.nav.nav-hidden li:nth-child(12) { transition-delay: 80ms; }
+    ul.nav.nav-hidden li:nth-child(13) { transition-delay: 40ms; }
+    ul.nav.nav-hidden li:nth-child(14) { transition-delay: 0ms; }
+
+    ul.nav a {
+        display: inline-block;
+        text-decoration: none;
+        background: #fff;
+        outline: 3px solid #fff;
+        border: 1px solid #fff;
+        padding: 3px 5px;
+        border-radius: 4px;
+        background-position: left -20px center;
+        transition: width 120ms ease, padding-left 50ms;
+    }
+
+        ul.nav a:hover, ul.nav a:active, ul.nav a.active {
+            background: #fff url('favicon.png') no-repeat;
+            background-size: auto 60%;
+            background-position: left 6px center;
+            /* border: 1px solid #2544A8; */
+            border: 1px solid rgb(102, 126, 205);
+            padding: 3px 5px 3px 30px;
+            font-weight: 600;
+            width: 110px;
+            text-align: right;
+        }
+
+    ul.nav a.social {
+        display: inline-block;
+        font: 400 0.9em/1.5em "FK Raster Grotesk Smooth", sans-serif;
+        letter-spacing: normal;
+        text-transform: uppercase;
+        background: none;
+        outline: none;
+        border: none;
+        border-radius: 4px;
+        padding: 2px 6px 2px 4px;
+        outline: 3px solid #fff;
+        background: #fff;
+        width: auto;
+        transition: margin 100ms ease;
+    }
+
+        ul.nav a.social::before {
+            content: " ↗";
+            margin: 0 6px 0 0;
+        }
+
+        ul.nav a.social:hover {
+            border: none;
+            padding: 2px 6px 2px 4px;
+            font-weight: 400;
+            width: auto;
+            text-align: left;
+            margin-left: 6px;
+        }
+
+    ul.nav li:not(:has(a.social)) + li:has(a.social) {
+        margin-top: 16px;
+    }
+/* 
+        ul.nav a.index {
+            width: auto;
+        } */
+
+a {
+    color: #2544A8;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1.5px;
+}
+
+    a:hover {
+        text-underline-offset: 4px;
+        text-decoration-thickness: 2px;
+    }
+
+hr {
+    margin: 32px auto;
+    background: #2544A8;
+    border: none;
+    height: 1px;
+}
+
+h1 {
+    margin: 32px auto;
+    font: 400 1.8em/1.4em "FK Raster Grotesk Smooth", sans-serif;
+    letter-spacing: -0.05em;
+    text-align: center;
+}
+
+h2 {
+    margin: 60px 0 20px;
+    font: 300 1.75em/1.25em "quimby-gubernatorial", sans-serif;
+    text-align: center;
+}
+
+h3 {
+    display: block;
+    margin: 8px 0;
+    font: 600 0.9em/1.4em "FK Raster Grotesk Smooth", sans-serif;
+    text-transform: uppercase;
+}
+
+p {
+    line-height: 1.4em;
+}
+
+blockquote {
+    padding: 1em 1.5em;
+    font-size: 1.4em;
+}
+
+.footer {
+    position: relative;
+    margin: 10px auto 30px;
+    width: 100%;
+}
+
+    .footer a.social {
+        display: block;
+        font: 400 0.8em/2em "FK Raster Grotesk Smooth", sans-serif;
+        text-transform: uppercase;
+        text-decoration: none;
+        margin: 0;
+        transition: margin 100ms ease;
+    }
+
+        .footer a.social:last-of-type {
+            margin-bottom: 12px;
+        }
+
+        .footer a.social::before {
+            content: " ↗";
+            margin: 0 6px 0 0;
+        }
+
+        .footer a.social:hover {
+            margin-left: 4px;
+        }
+
+    .footer p {
+        text-align: center;
+        font-size: 0.9em;
+        margin: 1px 0;
+    }
+
+
+@media (min-width: 480px) {
+
+    .wrap {
+        margin: 16px auto 20px;
+        max-width: 800px;
+        overflow-x: visible;
+    }
+
+    .footer {
+        margin: 0;
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        width: 200px;
+        z-index: 999;
+    }
+
+        .footer p {
+            text-align: left;
+        }
+
+    h1 {
+        font: 400 3em/1.25em "FK Raster Grotesk Smooth", sans-serif;
+        max-width: 700px;
+    }
+
+    h2 {
+        margin: 80px 0 20px;
+        font: 300 2em/1.25em "quimby-gubernatorial", sans-serif;
+    }
+
+}

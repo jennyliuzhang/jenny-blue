@@ -57,14 +57,15 @@ body {
     .sidebar-panel.nav-hidden {
         opacity: 0;
         pointer-events: none;
+        transition: opacity 100ms ease 500ms;
     }
 }
 
 .nav-toggle {
     position: fixed;
-    top: 16px;
+    top: 8px;
     left: 0;
-    padding: 0 0 0 16px;
+    padding: 4px 0 4px 16px;
     cursor: pointer;
     z-index: 1001;
     display: block;
@@ -98,7 +99,7 @@ ul.nav {
 }
 
     ul.nav li {
-        margin: 3px 0;
+        margin: 6px 0;
         opacity: 1;
         transform: translateY(0);
         transition: opacity 100ms ease, transform 100ms ease;
@@ -203,7 +204,16 @@ ul.nav {
     ul.nav li:not(:has(a.social)) + li:has(a.social) {
         margin-top: 16px;
     }
-/* 
+
+@media (max-width: 600px) {
+    ul.nav li:not(:has(a.social)) a {
+        padding: 8px 5px;
+    }
+    ul.nav li {
+        margin: 4px 0;
+    }
+}
+/*
         ul.nav a.index {
             width: auto;
         } */

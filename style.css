@@ -32,7 +32,7 @@ body {
 .little-jenny {
     display: block;
     margin: auto;
-    height: 150px;
+    height: 130px;
 }
 
 .sidebar-panel {
@@ -361,7 +361,7 @@ blockquote {
         }
 
     h1 {
-        font: 400 3em/1.25em "FK Raster Grotesk Smooth", sans-serif;
+        font: 400 2.7em/1.25em "FK Raster Grotesk Smooth", sans-serif;
         max-width: 700px;
     }
 

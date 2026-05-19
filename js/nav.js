@@ -47,9 +47,11 @@ class SiteNav extends HTMLElement {
 
       mq.addEventListener('change', (e) => {
         isOpen = e.matches
+        navList.classList.add('nav-no-transition')
         setOpen(isOpen)
         if (e.matches) panel.classList.add('nav-hidden')
         toggle.src = isOpen ? '/img/nav-open.png' : '/img/nav-default.png'
+        requestAnimationFrame(() => requestAnimationFrame(() => navList.classList.remove('nav-no-transition')))
       })
 
       toggle.addEventListener('click', () => {

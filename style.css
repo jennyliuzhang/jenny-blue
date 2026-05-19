@@ -117,6 +117,12 @@ ul.nav {
         transform: translateY(-2px);
     }
 
+    ul.nav.nav-no-transition li,
+    ul.nav.nav-no-transition li:nth-child(n) {
+        transition: none !important;
+        transition-delay: 0ms !important;
+    }
+
     ul.nav li:nth-child(1) { transition-delay: 100ms; }
     ul.nav li:nth-child(2) { transition-delay: 120ms; }
     ul.nav li:nth-child(3) { transition-delay: 180ms; }
@@ -151,7 +157,7 @@ ul.nav {
         display: inline-block;
         text-decoration: none;
         background: #fff;
-        outline: 3px solid #fff;
+        outline: 4px solid #fff;
         border: 1px solid #fff;
         padding: 3px 5px;
         border-radius: 4px;
@@ -202,15 +208,47 @@ ul.nav {
         }
 
     ul.nav li:not(:has(a.social)) + li:has(a.social) {
-        margin-top: 16px;
+        margin-top: 24px;
     }
 
-@media (max-width: 600px) {
-    ul.nav li:not(:has(a.social)) a {
-        padding: 8px 5px;
+@media (max-width: 919px) {
+    site-nav {
+        width: 200px;
     }
-    ul.nav li {
-        margin: 4px 0;
+
+    ul.nav {
+        padding: 0;
+        width: 100%;
+        background: #fff;
+    }
+
+    ul.nav li:not(:has(a.social)) {
+        margin: 0;
+    }
+
+    ul.nav li:not(:has(a.social)) a {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 10px 16px;
+        border-radius: 0;
+        outline: none;
+        border: none;
+        border-bottom: 1px solid #2544A8;
+        background: #fff;
+    }
+
+    ul.nav li:not(:has(a.social)) a:hover,
+    ul.nav li:not(:has(a.social)) a:active,
+    ul.nav li:not(:has(a.social)) a.active {
+        background: #fff url('favicon.png') no-repeat left 6px center;
+        background-size: auto 14px;
+        border: none;
+        border-bottom: 1px solid rgb(102, 126, 205);
+        padding: 10px 5px 10px 30px;
+        font-weight: 600;
+        width: 100%;
+        text-align: left;
     }
 }
 /*

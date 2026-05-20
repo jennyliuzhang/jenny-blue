@@ -4,6 +4,7 @@ class SiteNav extends HTMLElement {
         <img src="/img/nav-open.png" class="nav-toggle" alt="toggle nav">
         <ul class="nav">
           <li><a href="/" class="index">Home</a></li>
+          <li><a href="/updates" class="index">Updates</a></li>
           <li><a href="/fun-bio">Fun Bio</a></li>
           <li><a href="/bio">Full Bio</a></li>
           <li><a href="/cv">CV</a></li>

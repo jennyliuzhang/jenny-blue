@@ -45,6 +45,18 @@ body {
     z-index: 998;
 }
 
+.nav-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 997;
+}
+
+@media (max-width: 900px) {
+    .nav-overlay { display: block; }
+    .nav-overlay.nav-hidden { pointer-events: none; }
+}
+
 @media (max-width: 900px) {
     .sidebar-panel {
         display: block;
@@ -254,7 +266,7 @@ ul.nav {
     ul.nav a.social, ul.nav a.social:hover {
         padding: 2px 6px 2px 16px;
     }
-    
+
 }
 /*
         ul.nav a.index {
@@ -282,7 +294,7 @@ hr {
 
 h1 {
     margin: 32px auto;
-    font: 400 1.8em/1.4em "FK Raster Grotesk Smooth", sans-serif;
+    font: 400 2.2em/1.4em "FK Raster Grotesk Smooth", sans-serif;
     letter-spacing: -0.05em;
     text-align: center;
 }

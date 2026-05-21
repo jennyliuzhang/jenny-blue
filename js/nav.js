@@ -20,18 +20,27 @@ class SiteNav extends HTMLElement {
         document.body.prepend(panel)
       }
 
+      if (!document.querySelector('.nav-overlay')) {
+        const overlay = document.createElement('div')
+        overlay.className = 'nav-overlay nav-hidden'
+        document.body.prepend(overlay)
+      }
+
       // toggle nav open/closed
       const toggle = this.querySelector('.nav-toggle')
       const navList = this.querySelector('ul.nav')
       const panel = document.querySelector('.sidebar-panel')
+      const overlay = document.querySelector('.nav-overlay')
 
       const setOpen = (open) => {
         if (open) {
           navList.classList.remove('nav-hidden')
           panel.classList.remove('nav-hidden')
+          overlay.classList.remove('nav-hidden')
         } else {
           navList.classList.add('nav-hidden')
           panel.classList.add('nav-hidden')
+          overlay.classList.add('nav-hidden')
         }
       }
 
@@ -55,7 +64,7 @@ class SiteNav extends HTMLElement {
         requestAnimationFrame(() => requestAnimationFrame(() => navList.classList.remove('nav-no-transition')))
       })
 
-      panel.addEventListener('click', () => {
+      overlay.addEventListener('click', () => {
         if (!isOpen) return
         toggle.src = '/img/nav-to-close.gif'
         setTimeout(() => { toggle.src = '/img/nav-default.png' }, 1000)

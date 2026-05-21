@@ -55,6 +55,14 @@ class SiteNav extends HTMLElement {
         requestAnimationFrame(() => requestAnimationFrame(() => navList.classList.remove('nav-no-transition')))
       })
 
+      panel.addEventListener('click', () => {
+        if (!isOpen) return
+        toggle.src = '/img/nav-to-close.gif'
+        setTimeout(() => { toggle.src = '/img/nav-default.png' }, 1000)
+        setOpen(false)
+        isOpen = false
+      })
+
       toggle.addEventListener('click', () => {
         if (isOpen) {
           toggle.src = '/img/nav-to-close.gif'

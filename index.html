@@ -97,7 +97,7 @@
         }
 
             .poem .image {
-                width: 380px;
+                width: 360px;
                 border-radius: 16px;
             }
 
@@ -111,7 +111,7 @@
     <div class="wrap">
         <img class="little-jenny" src="jenny.gif" alt="">
 
-        <h1 class="home-h1">Jenny Liu Zhang is designing her favorite futures :)</h1>
+        <h1 class="home-h1">Jenny Liu Zhang is designing her favorite worlds :)</h1>
 
         <site-nav></site-nav>
 
@@ -123,7 +123,13 @@
 
             <h2>is so exciting</h2>
 
-            <video class="image" src="/img/lila-grass.mp4" autoplay loop muted playsinline></video>
+            <video class="image" id="lila-grass" src="/img/lila-grass.mp4" autoplay muted playsinline></video>
+            <script>
+              (function() {
+                var v = document.getElementById('lila-grass')
+                v.addEventListener('ended', function() { v.currentTime = 0; v.play() })
+              })()
+            </script>
 
             <h2>I like drawing</h2>
 

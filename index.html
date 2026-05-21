@@ -123,11 +123,13 @@
 
             <h2>is so exciting</h2>
 
-            <video class="image" id="lila-grass" src="/img/lila-grass.mp4" autoplay muted playsinline></video>
+            <video class="image" id="lila-grass" src="/img/lila-grass.mp4" autoplay loop muted playsinline></video>
             <script>
               (function() {
                 var v = document.getElementById('lila-grass')
-                v.addEventListener('ended', function() { v.currentTime = 0; v.play() })
+                v.addEventListener('timeupdate', function() {
+                  if (v.duration && v.currentTime > v.duration - 0.15) v.currentTime = 0
+                })
               })()
             </script>
 

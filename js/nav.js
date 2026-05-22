@@ -106,4 +106,5 @@ const _a = document.createElement('script')
 _a.defer = true
 _a.src = 'https://cloud.umami.is/script.js'
 _a.dataset.websiteId = '3556f1e4-4751-434f-8a8a-3a699c89d2f3'
+_a.dataset.domains = 'jenny.world,www.jenny.world'
 document.head.appendChild(_a)
